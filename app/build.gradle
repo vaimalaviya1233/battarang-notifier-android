@@ -4,16 +4,18 @@ plugins {
   id 'com.mikepenz.aboutlibraries.plugin'
 }
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 android {
-  namespace 'com.anissan.battarang'
-  buildToolsVersion = '35.0.0-rc4'
-  compileSdk 34
+  namespace = 'com.anissan.battarang'
+  buildToolsVersion = '36.0.0'
+  compileSdk = 34
 
   defaultConfig {
-    targetSdkVersion 34
-    minSdkVersion 21
-    versionCode 5 // Don't forget to also update the backend
-    versionName '1.7.0'
+    targetSdk = 34
+    minSdk = 21
+    versionCode = 5 // Don't forget to also update the backend
+    versionName = '1.7.0'
 
     // Generate "BuildConfig.*" properties
     Properties buildConfigProperties = new Properties()
@@ -28,33 +30,36 @@ android {
 
   buildTypes {
     debug {
-      applicationIdSuffix '.debug'
-      versionNameSuffix '-debug'
+      applicationIdSuffix = '.debug'
+      versionNameSuffix = '-debug'
     }
 
     release {
-      minifyEnabled true
-      shrinkResources true
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      minifyEnabled = true
+      shrinkResources = true
+      proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
 
       ndk {
-        debugSymbolLevel 'FULL'
+        debugSymbolLevel = 'FULL'
       }
     }
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
   }
 
-  kotlinOptions {
-    jvmTarget = '11'
+  kotlin {
+    jvmToolchain(21)
+    compilerOptions {
+      jvmTarget = JvmTarget.JVM_21
+    }
   }
 
   buildFeatures {
     buildConfig = true
-    viewBinding true
+    viewBinding = true
   }
 }
 
