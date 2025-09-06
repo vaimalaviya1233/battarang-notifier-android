@@ -4,12 +4,12 @@ package com.anissan.battarang.ui.views.about
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.FragmentManager
 import com.anissan.battarang.BuildConfig
 import com.anissan.battarang.R
@@ -81,8 +81,8 @@ class AboutSheet : BottomSheetDialogFragment() {
 
   private fun openLinkInBrowser(url: String) {
     try {
-      startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-    } catch (e: ActivityNotFoundException) {
+      startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
+    } catch (_: ActivityNotFoundException) {
       Toast.makeText(requireContext(), R.string.no_browser_found, Toast.LENGTH_LONG).show()
     }
   }

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.isVisible
 import com.anissan.battarang.R
 import com.anissan.battarang.background.receivers.handlers.BroadcastedEventHandlers
 import com.anissan.battarang.background.services.BroadcastReceiverRegistererService
@@ -149,14 +150,14 @@ class MainActivity : AppCompatActivity() {
     localKvStore.stopObservingChanges()
   }
 
-  override fun onNewIntent(intent: Intent?) {
+  override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
 
     /**
      * Notification actions are set from here:
      * @see com.anissan.battarang.background.receivers.handlers.BroadcastedEventHandlers.notifyUpdates
      */
-    when (intent?.action) {
+    when (intent.action) {
       "Update" -> AboutSheet.show(supportFragmentManager)
       "Unpair" -> localKvStore.receiverToken = null
     }
@@ -190,7 +191,7 @@ class MainActivity : AppCompatActivity() {
     binding.run {
       Snackbar.make(root, text, length).apply {
         anchorView =
-          if (pairReceiverFab.visibility == View.VISIBLE) pairReceiverFab else buttonBarCard
+          if (pairReceiverFab.isVisible) pairReceiverFab else buttonBarCard
       }.show()
     }
   }
