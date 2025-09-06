@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.anissan.battarang.ui.views.about
 
 import android.content.ActivityNotFoundException
