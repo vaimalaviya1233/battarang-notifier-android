@@ -1,7 +1,6 @@
 package com.anissan.battarang.ui.views
 
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Build
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
@@ -22,16 +21,8 @@ fun MaterialCheckBox.bindClicksFrom(card: MaterialCardView) {
   card.setOnClickListener { performClick() }
 }
 
-val AppCompatActivity.isDarkModeEnabled: Boolean
-  get() {
-    val darkModeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-    return darkModeFlag == Configuration.UI_MODE_NIGHT_YES
-  }
-
 val AppCompatActivity.dynamicSurfaceColor: Int
-  get() = if (isDarkModeEnabled) {
-    SurfaceColors.SURFACE_1.getColor(this)
-  } else SurfaceColors.SURFACE_2.getColor(this)
+  get() = SurfaceColors.SURFACE_2.getColor(this)
 
 val Context.defaultDeviceName: String
   get() {
