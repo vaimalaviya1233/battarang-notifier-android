@@ -19,7 +19,7 @@ class BatteryLevelCheckerAlarmReceiver : BroadcastReceiver(), KoinComponent {
   private val broadcastedEventHandlers: BroadcastedEventHandlers by inject()
 
   override fun onReceive(context: Context?, intent: Intent?) {
-    val action = intent?.action ?: return
+    val action: String = intent?.action ?: return
     logV { """Received the Intent Action: "$action"""" }
 
     when (action) {

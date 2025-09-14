@@ -16,7 +16,7 @@ class ChargerConnectedReceiver : BroadcastReceiver(), KoinComponent {
   override fun onReceive(context: Context?, intent: Intent?) {
     if (context == null) return
 
-    val action = intent?.action ?: return
+    val action: String = intent?.action ?: return
     logV { """Received the Intent Action: "$action"""" }
 
     when (action) {

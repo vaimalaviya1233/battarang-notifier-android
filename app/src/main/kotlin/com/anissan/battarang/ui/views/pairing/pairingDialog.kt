@@ -3,11 +3,11 @@ package com.anissan.battarang.ui.views.pairing
 import android.content.ActivityNotFoundException
 import android.content.ClipboardManager
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.anissan.battarang.BuildConfig
 import com.anissan.battarang.R
 import com.anissan.battarang.databinding.DialogPairBinding
@@ -42,8 +42,8 @@ fun MainActivity.showPairingDialog() {
 
   dialogContentView.telegramLinkButton.setOnClickListener {
     try {
-      startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.TELEGRAM_BOT_URL)))
-    } catch (e: ActivityNotFoundException) {
+      startActivity(Intent(Intent.ACTION_VIEW, BuildConfig.TELEGRAM_BOT_URL.toUri()))
+    } catch (_: ActivityNotFoundException) {
       Toast.makeText(this, R.string.telegram_app_not_found, Toast.LENGTH_LONG).show()
     }
   }

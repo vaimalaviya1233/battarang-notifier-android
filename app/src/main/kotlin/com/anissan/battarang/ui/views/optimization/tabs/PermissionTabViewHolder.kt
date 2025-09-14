@@ -3,7 +3,6 @@ package com.anissan.battarang.ui.views.optimization.tabs
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
@@ -15,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.IntentCompat
 import androidx.core.content.PackageManagerCompat
 import androidx.core.content.UnusedAppRestrictionsConstants
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.anissan.battarang.BuildConfig
 import com.anissan.battarang.databinding.TabPermissionBinding
@@ -65,7 +65,7 @@ class PermissionTabViewHolder(
 
         if ((switch as MaterialSwitch).isChecked) {
           intent.action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-          intent.data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
+          intent.data = "package:${BuildConfig.APPLICATION_ID}".toUri()
         } else {
           intent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
         }
@@ -129,7 +129,7 @@ class PermissionTabViewHolder(
         },
         ContextCompat.getMainExecutor(context)
       )
-    } catch (e: Exception) {
+    } catch (_: Exception) {
       materialSwitch.isEnabled = false
       disableCard()
     }
@@ -142,7 +142,7 @@ class PermissionTabViewHolder(
         { isChecked = future.get() == UnusedAppRestrictionsConstants.DISABLED },
         ContextCompat.getMainExecutor(context)
       )
-    } catch (e: Exception) {
+    } catch (_: Exception) {
       isChecked = false
     }
   }
