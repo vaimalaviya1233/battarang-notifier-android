@@ -1,7 +1,4 @@
 <resources>
-  <string name="app_name">battarang</string>
-  <string name="app_label">@string/app_name</string>
-
   <!-- Configurations -->
 
   <string name="notification_service">خدمة الإشعارات</string>
@@ -87,7 +84,7 @@
   <string name="source">المصدر</string>
   <string name="issues">القضايا</string>
   <string name="by">تصميم وتطوير بواسطة</string>
-  <string name="author_name">نيسان أ.</string>
+  <string name="author_name">نيسان أحمد</string>
   <string name="author_country">🇧🇩</string>
   <string name="follow_on_twitter">تابعني على تويتر</string>
   <string name="connect_on_linkedin">تواصل معي على لينكد إن</string>
